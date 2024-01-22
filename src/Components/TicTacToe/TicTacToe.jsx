@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import "./TicTacToe.css"
 import CircleIcon from "../Assets/circle.png"
 import CrossIcon from "../Assets/cross.png"
@@ -10,6 +10,7 @@ export const TicTacToe = () => {
 
     let [count, setCount] = useState(0)
     let [lock, setLock] = useState(false)
+    let titleRef =useRef(null)
 
 // Whenever we click on the boxes this function will be executed
     const toggle = (e, num) => {
@@ -27,18 +28,76 @@ export const TicTacToe = () => {
          setCount(++count);  // we will increase the count by 1 
 
         }
-        // Simalirary if the count is odd
+        // And if the count is odd:
         else {
             e.target.innerHTML =`<img src='${CircleIcon}' alt='Circle image'>`;
          data[num]= 'o'; // we will mark it with  a 'o'
          setCount(++count);  //we will increase the count by 1  and chnage the img by CircleIcon 
         }
+        checkWin()
+
+    }
+    // THE LOGIC IS VERY REPETITIVE. TOO MESSY. THINK ABOUT SOMETHING ELSE
+    const checkWin = () => {
+        if(data[0]===data[1] && data[1]===data[2] && data[2]!=="")
+        {
+        // Call the "won" function here whenever a player wins
+        won(data[2]);
+
+        }
+        else if(data[3]===data[4] && data[4]===data[5] && data[5]!=="")
+        {
+        won(data[5]);
+        }
+        else if(data[6]===data[7] && data[7]===data[8] && data[8]!=="")
+        {
+        won(data[8]);
+        }
+        else if(data[0]===data[3] && data[3]===data[6] && data[6]!=="")
+        {
+        won(data[6]);
+        }
+        else if(data[1]===data[4] && data[4]===data[7] && data[7]!=="")
+        {
+        won(data[7]);
+        }
+        else if(data[2]===data[5] && data[5]===data[8] && data[8]!=="")
+        {
+        won(data[8]);
+        }
+        else if(data[0]===data[4] && data[4]===data[8] && data[8]!=="")
+        {
+        won(data[8]);
+        }
+        else if(data[0]===data[1] && data[1]===data[2] && data[2]!=="")
+        {
+        won(data[2]);
+        }
+        else if(data[2]===data[4] && data[4]===data[6] && data[6]!=="")
+        {
+        won(data[6]);
+        }
+
+
 
     }
 
+    //This function will be executed when any palyer wins
+    const won = (winner) => {
+        setLock(true); // set to "true" so the data cannot be modify
+        if(winner==="x")
+        {
+          titleRef.current.innerHTML = `Congratulations: <img src=${CrossIcon}> wins`;
+        }
+        else
+        {
+          titleRef.current.innerHTML = `Congratulations: <img src=${CircleIcon}> wins`
+        }
+    }
+
   return (
-    <div className='container'>
-        <h1 className="title">Tic Tac Toe Game In <span>React</span></h1>
+    <div className="containe">
+        <h1 className="title" ref={titleRef}>Tic Tac Toe Game In <span>React</span></h1>
         <div className="board">
           <div className="row1">
             {/*Here we call the toggle function nand we will pass the element and the index number. 
