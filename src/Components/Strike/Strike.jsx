@@ -1,9 +1,7 @@
 import React from 'react'
 
 function Strike() {
-  return (
-    <div>Strike</div>
-  )
+  return <div></div>
 }
 
 export default Strike
