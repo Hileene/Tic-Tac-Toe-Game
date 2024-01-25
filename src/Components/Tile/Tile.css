@@ -1,0 +1,18 @@
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile {
+  display: flex;
+  width: 180px;
+  height: 180px;
+  background: #1f3540;
+  border: 4px solid #0f1b21;
+  border-radius: 12px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
