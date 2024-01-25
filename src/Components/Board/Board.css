@@ -1,0 +1,7 @@
+.board {
+  height: 600px;
+  width: 564px;
+  display: flex;
+  margin: auto;
+  position: relative;
+}
