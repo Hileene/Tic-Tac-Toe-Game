@@ -5,17 +5,9 @@ import './Board.css'
 
 function Board() {
   return (
-    <div>
-        <Tiles/>
-        <Tiles/>
-        <Tiles/>
-        <Tiles/>
-        <Tiles/>
-        <Tiles/>
-        <Tiles/>
-        <Tiles/>
-        <Tiles/>
-        <Strike/>
+    <div className="board">
+      <Tiles />
+      <Strike />
     </div>
   )
 }
