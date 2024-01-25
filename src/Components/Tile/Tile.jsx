@@ -1,25 +1,11 @@
 import React from 'react'
 import './Tile.css'
 
-function Tiles() {
+function Tile({ className, value, onClick }) {
   return (
-    <div>
-      <div className="row">
-        <div className="tile">X</div>
-        <div className="tile">X</div>
-        <div className="tile">X</div>
-      </div>
-      <div className="row">
-        <div className="tile">X</div>
-        <div className="tile">X</div>
-        <div className="tile">X</div>
-      </div>
-      <div className="row">
-        <div className="tile">X</div>
-        <div className="tile">X</div>
-        <div className="tile">X</div>
-      </div>
+    <div onClick={onClick} className={`tile ${className}`}>
+      {value}
     </div>
   )
 }
-export default Tiles
+export default Tile
