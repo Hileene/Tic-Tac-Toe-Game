@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Board from '../Board/Board'
 import './TicTacToe.css'
+import GameOver from '../GameOver/GameOver'
+import GameState from '../GameState'
 
 const playerX = 'X'
 const playerO = 'O'
@@ -23,7 +25,7 @@ const winninCombinations = [
   { combo: [6, 4, 2], strikeClass: 'strike-diagonal-2' },
 ]
 
-function checkWinner(tiles, setStrikeClass) {
+function checkWinner(tiles, setStrikeClass, setGameState) {
   for (const { combo, strikeClass } of winninCombinations) {
     const tileValue1 = tiles[combo[0]]
     const tileValue2 = tiles[combo[1]]
@@ -35,7 +37,18 @@ function checkWinner(tiles, setStrikeClass) {
       tileValue1 === tileValue3
     ) {
       setStrikeClass(strikeClass)
+      if (tileValue1 === playerX) {
+        setGameState(GameState.playerXWins)
+      } else {
+        setGameState(GameState.playerOWins)
+      }
+      return
     }
+  }
+  //Here , we are using the "every" method which is going to be looping over every single tile
+  const areAllTilesFilledIn = tiles.every((tiles) => tiles !== null)
+  if (areAllTilesFilledIn) {
+    setGameState(GameState.draw)
   }
 }
 
@@ -44,11 +57,14 @@ function TicTacToe() {
   const [tiles, setTiles] = useState(Array(9).fill(null))
   const [playerTurn, setPlayerTurn] = useState(playerX)
   const [strikeClass, setStrikeClass] = useState()
+  const [gameState, setGameState] = useState(GameState.inProgress)
 
   /* Handling the click depending on the player's turn */
   /*This arrow function will indicate which tile is being clicked */
   const handleTileClick = (index) => {
-    console.log(index)
+    if (gameState !== GameState.inProgress) {
+      return
+    }
     /*Here it allows us to prevent adding another value in the tiles if there is one already*/
     if (tiles[index] !== null) {
       return
@@ -74,7 +90,7 @@ function TicTacToe() {
   /*Our dependency list is going to include the 'tiles'. Everytime the tile change
   we are going to call 'checkWinner'*/
   useEffect(() => {
-    checkWinner(tiles, setStrikeClass)
+    checkWinner(tiles, setStrikeClass, setGameState)
   }, [tiles])
 
   return (
@@ -86,6 +102,7 @@ function TicTacToe() {
         onTileClick={handleTileClick}
         strikeClass={strikeClass}
       />
+      <GameOver gameState={gameState} />
     </div>
   )
 }
