@@ -3,6 +3,7 @@ import Board from '../Board/Board'
 import './TicTacToe.css'
 import GameOver from '../GameOver/GameOver'
 import GameState from '../GameState'
+import Reset from '../Reset/Reset'
 
 const playerX = 'X'
 const playerO = 'O'
@@ -86,6 +87,13 @@ function TicTacToe() {
     }
   }
 
+  const handleReset = () => {
+    setGameState(GameState.inProgress)
+    setTiles(Array(9).fill(null))
+    setPlayerTurn(playerX)
+    setStrikeClass(null)
+  }
+
   /*Here we are going to check for a winner*/
   /*Our dependency list is going to include the 'tiles'. Everytime the tile change
   we are going to call 'checkWinner'*/
@@ -103,6 +111,7 @@ function TicTacToe() {
         strikeClass={strikeClass}
       />
       <GameOver gameState={gameState} />
+      <Reset gameState={gameState} onReset={handleReset} />
     </div>
   )
 }
