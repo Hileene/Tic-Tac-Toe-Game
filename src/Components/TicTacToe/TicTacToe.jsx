@@ -9,6 +9,7 @@ function TicTacToe() {
   /*Estlablish the state of the tiles */
   const [tiles, setTiles] = useState(Array(9).fill(null))
   const [playerTurn, setPlayerTurn] = useState(playerX)
+  const [strikeClass, setStrikeClass] = useState('strike-row-1')
 
   /* Handling the click depending on the player's turn */
   /*This arrow function will indicate which tile is being clicked */
@@ -37,7 +38,12 @@ function TicTacToe() {
   return (
     <div>
       <h1>Tic Tac Toc</h1>
-      <Board tiles={tiles} onTileClick={handleTileClick} />
+      <Board
+        playerTurn={playerTurn}
+        tiles={tiles}
+        onTileClick={handleTileClick}
+        strikeClass={strikeClass}
+      />
     </div>
   )
 }
