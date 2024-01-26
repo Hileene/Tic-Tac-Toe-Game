@@ -4,6 +4,14 @@ import './TicTacToe.css'
 import GameOver from '../GameOver/GameOver'
 import GameState from '../GameState'
 import Reset from '../Reset/Reset'
+import gameOverSoundAsset from '../../sounds/game_over.wav'
+import clickSoundAsset from '../../sounds/click.wav'
+
+const gameOverSound = new Audio(gameOverSoundAsset)
+gameOverSound.volume = 0.2
+
+const clickSound = new Audio(clickSoundAsset)
+clickSound.volume = 0.5
 
 const playerX = 'X'
 const playerO = 'O'
@@ -100,6 +108,18 @@ function TicTacToe() {
   useEffect(() => {
     checkWinner(tiles, setStrikeClass, setGameState)
   }, [tiles])
+
+  useEffect(() => {
+    if (tiles.some((tile) => tile !== null)) {
+      clickSound.play()
+    }
+  }, [tiles])
+
+  useEffect(() => {
+    if (gameState !== GameState.inProgress) {
+      gameOverSound.play()
+    }
+  }, [gameState])
 
   return (
     <div>
