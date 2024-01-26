@@ -10,3 +10,13 @@
   align-items: center;
   font-size: 4em;
 }
+
+.x-hover:hover::after {
+  content: 'X';
+  opacity: 0.4;
+}
+
+.o-hover:hover::after {
+  content: 'O';
+  opacity: 0.4;
+}
