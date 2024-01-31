@@ -1,6 +1,7 @@
 # Tic Tac Toe Game in React
 
 This project is a simple implementation of the classic Tic Tac Toe game using React. It follows the tutorial by [Coding With Adam](https://www.youtube.com/watch?v=4Gt_YyGf6B0).
+However I did customize the board to my own liking.
 
 ## Table of Contents
 
@@ -54,3 +55,21 @@ npm start
 ```
 
 Open your browser and visit http://localhost:3000 to play the game.
+
+## Contributing
+
+If you'd like to contribute to this project, please follow these guidelines:
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add YourFeature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a pull request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Tutorial
+
+This project was built following the tutorial by [Coding With Adam](https://www.youtube.com/@CodingWithAdam). I did Check out the tutorial for a step-by-step guide.
