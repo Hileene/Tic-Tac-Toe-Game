@@ -1,7 +1,7 @@
 # Tic Tac Toe Game in React
 
 <p align="center">
-  <img src='./public/tictactoe_pic.png' alt='Tic Tac Toe image'>
+  <img src='./public/tic-tac-toe_pic.png' alt='Tic Tac Toe image'>
 </p>
 
 This project is a simple implementation of the classic Tic Tac Toe game using React. It follows the tutorial by [Coding With Adam](https://www.youtube.com/watch?v=4Gt_YyGf6B0).
